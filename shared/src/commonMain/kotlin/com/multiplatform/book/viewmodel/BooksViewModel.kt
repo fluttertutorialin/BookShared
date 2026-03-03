@@ -39,21 +39,3 @@ class BooksViewModel(
     }
 }
 
-/*inline fun <T> NetworkResult<T>.handle(
-    onSuccess: (T) -> Unit,
-    onError: (String?) -> Unit,
-    onLoading: () -> Unit = {}
-) {
-    when (this) {
-        is NetworkResult.Success -> onSuccess(data)
-        is NetworkResult.Error -> onError(message)
-        is NetworkResult.Loading -> onLoading()
-    }
-}
-
-sealed class NetworkResult<T> {
-    data class Success<T>(val data: T) : NetworkResult<T>()
-    data class Error<T>(val message: String?) : NetworkResult<T>()
-    object Loading : NetworkResult<Nothing>() // Fixed: Use object for memory efficiency
-}*/
-
