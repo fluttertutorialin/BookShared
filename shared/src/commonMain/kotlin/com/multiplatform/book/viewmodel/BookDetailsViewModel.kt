@@ -11,12 +11,13 @@ import kotlinx.coroutines.launch
 class BookDetailsViewModel(
     private val repository: BookRepository = createBookRepository()
 ): PlatformViewModel() {
-    private val _book = MutableStateFlow<Book?>(null)
-    val book: StateFlow<Book?> = _book.asStateFlow()
+
+    val book: StateFlow<Book?>
+        field = MutableStateFlow(null)
 
     suspend fun loadBook(bookId: Int){
       platformViewModelScope.launch {
-          _book.value = repository.getBookDetail(bookId = bookId)
+          book.value = repository.getBookDetail(bookId = bookId)
       }
     }
 }

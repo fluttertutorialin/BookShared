@@ -16,8 +16,9 @@ import kotlinx.coroutines.launch
 class BooksViewModel(
     private val repository: BookRepository = createBookRepository()
 ): PlatformViewModel() {
-    private val _book = MutableStateFlow<List<Book>?>(null)
-    val book: StateFlow<List<Book>?> = _book.asStateFlow()
+
+    val book: StateFlow<List<Book>?>
+        field = MutableStateFlow(emptyList())
 
     init {
         loadBook()
@@ -25,7 +26,7 @@ class BooksViewModel(
 
     fun loadBook() {
       platformViewModelScope.launch {
-          _book.value = repository.getBooks()
+          book.value = repository.getBooks()
       }
     }
 

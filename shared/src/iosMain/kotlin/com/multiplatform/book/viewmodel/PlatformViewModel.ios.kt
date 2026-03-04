@@ -41,7 +41,7 @@ actual open class PlatformViewModel {
     private fun buildScope(): CloseableCoroutineScope = CloseableCoroutineScope(
             SupervisorJob() + Dispatchers.Main.immediate
         ).apply {
-            close()
+            //close()
     }
 
     protected actual open fun clear() {
