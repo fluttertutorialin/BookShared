@@ -5,6 +5,7 @@
 import Foundation
 import Shared
 
+/*
 class BooksObservable: ObservableObject {
     //1
     //let viewModel = ViewModelFactory().booksViewModel()
@@ -36,6 +37,22 @@ class BooksObservable: ObservableObject {
     deinit {
         viewModel.clear()
     }
+}*/
+
+
+@Observable
+class BooksObservable {
+    let viewModel = ViewModelFactory().booksViewModel()
+
+       var books: [Book] = []
+
+       init() {
+           viewModel.observeFLow(flow: viewModel.book) { [weak self] value in
+                   self?.books = value as! [Book]
+               }
+       }
+
+       deinit {
+           viewModel.clear()
+       }
 }
-
-

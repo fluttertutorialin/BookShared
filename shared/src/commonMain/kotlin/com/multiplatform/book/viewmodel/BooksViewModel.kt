@@ -1,16 +1,12 @@
 package com.multiplatform.book.viewmodel
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.multiplatform.book.createBookRepository
 import com.multiplatform.book.model.Book
 import com.multiplatform.book.repository.BookRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class BooksViewModel(
@@ -34,9 +30,8 @@ class BooksViewModel(
     fun observeBooks(callback: (List<Book>) -> Unit) {
         platformViewModelScope.launch {
             book.collect { list ->
-                list?.let { callback(it) }
+                callback(list)
             }
         }
     }
 }
-

@@ -3,7 +3,7 @@ import Shared
 
 struct ContentView: View {
     @State private var showContent = false
-    @StateObject private var observable = BooksObservable()
+    @State var observable = BooksObservable()
 
     var body: some View {
 
