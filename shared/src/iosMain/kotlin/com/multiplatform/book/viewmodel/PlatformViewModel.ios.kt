@@ -30,8 +30,14 @@ import kotlin.coroutines.CoroutineContext
     }
 }*/
 
+object ViewModelFactory {
+    fun booksViewModel(): BooksViewModel {
+        return BooksViewModel(createBookRepository())
+    }
+}
 
 actual open class PlatformViewModel {
+    private var isCleared = false
 
     private val scope: CoroutineScope by lazy(::buildScope)
 
@@ -54,12 +60,6 @@ actual open class PlatformViewModel {
                 onChange(value)
             }
         }
-    }
-}
-
-object ViewModelFactory {
-    fun booksViewModel(): BooksViewModel {
-        return BooksViewModel(createBookRepository())
     }
 }
 

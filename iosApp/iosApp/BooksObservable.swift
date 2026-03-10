@@ -39,20 +39,18 @@ class BooksObservable: ObservableObject {
     }
 }*/
 
-
 @Observable
 class BooksObservable {
     let viewModel = ViewModelFactory().booksViewModel()
+    var books: [Book] = []
 
-       var books: [Book] = []
+    init() {
+        viewModel.observeFLow(flow: viewModel.book) { [weak self] value in
+            self?.books = value as! [Book]
+        }
+    }
 
-       init() {
-           viewModel.observeFLow(flow: viewModel.book) { [weak self] value in
-                   self?.books = value as! [Book]
-               }
-       }
-
-       deinit {
-           viewModel.clear()
-       }
+    deinit {
+        viewModel.clear()
+   }
 }

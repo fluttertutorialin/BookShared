@@ -5,6 +5,9 @@ struct ContentView: View {
     @State private var showContent = false
     @State var observable = BooksObservable()
 
+    // @StateObject keeps it alive during redraws.
+    //@StateObject private var viewModel = PlayerViewModel()
+    
     var body: some View {
 
         VStack {
